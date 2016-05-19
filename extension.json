@@ -1,0 +1,13 @@
+{
+	"name": "ArchiMaps",
+	"author": "Pierre Rudloff",
+	"license-name": "GPL-3.0",
+	"Hooks": {
+		"BeforePageDisplay": [
+			"ArchiMaps\\ArchiMaps::addScripts"
+		]
+	},
+	"AutoloadClasses": {
+		"ArchiMaps\\ArchiMaps": "ArchiMaps.php"
+	}
+}

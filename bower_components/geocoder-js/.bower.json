@@ -1,0 +1,29 @@
+{
+  "name": "geocoder-js",
+  "version": "0.0.1",
+  "authors": [
+    "Brandon Morrison <brandon@brandonmorrison.com>"
+  ],
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "devDependencies": {
+    "jasmine": "~v1.3.1"
+  },
+  "homepage": "https://github.com/geocoder-php/geocoder-js",
+  "_release": "0.0.1",
+  "_resolution": {
+    "type": "version",
+    "tag": "0.0.1",
+    "commit": "2a6f253e06252d3fff1f6b5d4a4fc4dc5bcecbac"
+  },
+  "_source": "https://github.com/geocoder-php/geocoder-js.git",
+  "_target": "~0.0.1",
+  "_originalSource": "geocoder-js"
+}
