@@ -1,0 +1,10 @@
+{
+	"name": "archi-strasbourg/archi-maps",
+	"description": "Map plugin for archi-wiki.org",
+	"license": "GPL-3.0",
+	"authors": [{
+		"name": "Pierre Rudloff",
+		"email": "contact@rudloff.pro"
+	}],
+	"type": "mediawiki-extension"
+}
