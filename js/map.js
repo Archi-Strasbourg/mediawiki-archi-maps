@@ -2,7 +2,7 @@ var archimap = (function () {
 	return {
         init: function() {
             var div = document.getElementById('archimap'),
-                map = L.map(div).setView([48.573392, 7.752353], 13),
+                map = L.map(div, { fullscreenControl: true }).setView([48.573392, 7.752353], 13),
                 geo = GeocoderJS.createGeocoder('openstreetmap'),
                 layers = {
                     'OpenStreetMap': L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
