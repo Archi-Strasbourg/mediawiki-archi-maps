@@ -5,6 +5,9 @@ var archimap = (function () {
     function openAddress(e) {
         window.location = mw.config.get("wgArticlePath").replace("$1", e.target.title);
     }
+    function setTitle(e) {
+        e.target._container.setAttribute("title", e.target.title.replace("Adresse:", ""));
+    }
     return {
         init: function () {
             var div = document.getElementById("archimap");
@@ -42,6 +45,7 @@ var archimap = (function () {
                                             title: item.title.replace("Adresse:", "")
                                         }
                                     ).addTo(addresses);
+                                    marker.on("add", setTitle);
                                     marker.title = item.title;
                                     marker.on("click", openAddress);
                                     if (i === data.query.geosearch.length - 1) {
