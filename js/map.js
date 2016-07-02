@@ -27,7 +27,8 @@ var archimap = (function () {
             list: "geosearch",
             gsradius: 10000,
             gscoord: result[0].latitude + "|" + result[0].longitude,
-            gsnamespace: 4000
+            gsnamespace: 4000,
+            gsprimary: "all"
         }).done(function (data) {
             data.query.geosearch.forEach(
                 function (item, i) {
