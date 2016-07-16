@@ -30,25 +30,29 @@ var archimap = (function () {
             gsnamespace: 4000,
             gsprimary: "all"
         }).done(function (data) {
-            data.query.geosearch.forEach(
-                function (item, i) {
-                    if (item.title.replace("Adresse:", "") !== mw.config.get("wgTitle")) {
-                        var marker = L.circle(
-                            item,
-                            5,
-                            {
-                                title: item.title.replace("Adresse:", "")
+            if (data.query.geosearch.length > 0) {
+                data.query.geosearch.forEach(
+                    function (item, i) {
+                        if (item.title.replace("Adresse:", "") !== mw.config.get("wgTitle")) {
+                            var marker = L.circle(
+                                item,
+                                5,
+                                {
+                                    title: item.title.replace("Adresse:", "")
+                                }
+                            ).addTo(addresses);
+                            marker.on("add", setTitle);
+                            marker.title = item.title;
+                            marker.on("click", openAddress);
+                            if (i === data.query.geosearch.length - 1) {
+                                map.fitBounds(addresses.getBounds());
                             }
-                        ).addTo(addresses);
-                        marker.on("add", setTitle);
-                        marker.title = item.title;
-                        marker.on("click", openAddress);
-                        if (i === data.query.geosearch.length - 1) {
-                            map.fitBounds(addresses.getBounds());
                         }
                     }
-                }
-            );
+                );
+            } else {
+                map.fitBounds(addresses.getBounds());
+            }
         });
     }
 
@@ -73,9 +77,9 @@ var archimap = (function () {
                 for (i = 1; i < 10; i += 1) {
                     if (div.dataset["address" + i]) {
                         if (i === 1) {
-                            geo.geocode(div.dataset["address" + i] + ", " + div.dataset.city + ", " + div.dataset.country, addMarkerAndOther);
+                            geo.geocode(div.dataset["address" + i].replace("l' ", "l'") + ", " + div.dataset.city + ", " + div.dataset.country, addMarkerAndOther);
                         } else {
-                            geo.geocode(div.dataset["address" + i] + ", " + div.dataset.city + ", " + div.dataset.country, addMarker);
+                            geo.geocode(div.dataset["address" + i].replace("l' ", "l'") + ", " + div.dataset.city + ", " + div.dataset.country, addMarker);
                         }
                     }
                 }
