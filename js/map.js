@@ -76,10 +76,12 @@ var archimap = (function () {
                 map.addControl(new L.Control.Layers(layers, {}));
                 for (i = 1; i < 10; i += 1) {
                     if (div.dataset["address" + i]) {
+                        div.dataset["address" + i] = div.dataset["address" + i].replace("l' ", "l'");
+                        div.dataset["address" + i] = div.dataset["address" + i].replace("d' ", "d'");
                         if (i === 1) {
-                            geo.geocode(div.dataset["address" + i].replace("l' ", "l'") + ", " + div.dataset.city + ", " + div.dataset.country, addMarkerAndOther);
+                            geo.geocode(div.dataset["address" + i] + ", " + div.dataset.city + ", " + div.dataset.country, addMarkerAndOther);
                         } else {
-                            geo.geocode(div.dataset["address" + i].replace("l' ", "l'") + ", " + div.dataset.city + ", " + div.dataset.country, addMarker);
+                            geo.geocode(div.dataset["address" + i] + ", " + div.dataset.city + ", " + div.dataset.country, addMarker);
                         }
                     }
                 }
