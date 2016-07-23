@@ -1,8 +1,7 @@
 {
-	"name": "ArchiMaps",
+	"name": "archimaps",
 	"dependencies": {
-		"leaflet": "~0.7.7",
-		"leaflet-plugins": "~1.6.1",
+		"leaflet-plugins": "~1.8.0",
 		"geocoder-js": "~0.0.1",
 		"leaflet-fullscreen": "~1.0.1"
 	}
