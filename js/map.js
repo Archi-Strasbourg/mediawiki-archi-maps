@@ -23,15 +23,17 @@ var archimap = (function () {
             map.addControl(new L.control.fullscreen());
         },
         pollForMap (time) {
-            if (maps && maps.leafletList[0]) {
-                archimap.init();
-            } else {
-                if (!time) {
-                    time = 50;
+            if ($('#map_leaflet_1').length > 0) {
+                if (maps && maps.leafletList[0]) {
+                    archimap.init();
+                } else {
+                    if (!time) {
+                        time = 50;
+                    }
+                    setTimeout(function () {
+                        archimap.pollForMap(time * 2)
+                    }, time);
                 }
-                setTimeout(function () {
-                    archimap.pollForMap(time * 2)
-                }, time);
             }
         }
     };
