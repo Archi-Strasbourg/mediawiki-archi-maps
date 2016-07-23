@@ -14,7 +14,7 @@ class ArchiMaps
             $out->addScriptFile(
                 $wgScriptPath.'/extensions/ArchiMaps/bower_components/leaflet-fullscreen/dist/Leaflet.fullscreen.min.js'
             );
-            $out->addScriptFile('https://maps.google.com/maps/api/js?v=3');
+            $out->addScriptFile('https://maps.google.com/maps/api/js?v=3&'.$egMapsGMaps3ApiKey);
             $out->addScriptFile(
                 $wgScriptPath.'/extensions/ArchiMaps/bower_components/leaflet-plugins/layer/tile/Google.js'
             );
