@@ -1,5 +1,5 @@
 /*jslint browser: true, for: true*/
-/*global L, GeocoderJS, window, mw*/
+/*global L, window, mw*/
 var archimap = (function () {
     'use strict';
     return {
