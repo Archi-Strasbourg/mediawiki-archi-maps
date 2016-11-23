@@ -1,7 +1,6 @@
 {
 	"name": "archimaps",
 	"dependencies": {
-		"leaflet-plugins": "~1.8.0",
-		"leaflet-fullscreen": "~1.0.1"
+		"leaflet-plugins": "~1.8.0"
 	}
 }

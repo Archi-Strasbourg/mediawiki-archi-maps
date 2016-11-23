@@ -20,7 +20,6 @@ var archimap = (function () {
             };
             map.addLayer(layers.OpenStreetMap);
             map.addControl(new L.Control.Layers(layers, {}));
-            map.addControl(new L.control.fullscreen());
         },
         pollForMap (time) {
             if ($('#map_leaflet_1').length > 0) {
