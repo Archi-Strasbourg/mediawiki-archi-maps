@@ -15,8 +15,8 @@ var archimap = (function () {
             );
             var layers = {
                 "OpenStreetMap": OSMlayer,
-                "Google Maps (satelitte)": new L.Google("SATELLITE"),
-                "Google Maps (plan)": new L.Google("ROADMAP")
+                "Google Maps (satelitte)": L.gridLayer.googleMutant({ type: "satellite"}),
+                "Google Maps (plan)": L.gridLayer.googleMutant({ type: "roadmap"})
             };
             map.addLayer(layers.OpenStreetMap);
             map.addControl(new L.Control.Layers(layers, {}));

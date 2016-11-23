@@ -1,6 +1,6 @@
 {
 	"name": "archimaps",
 	"dependencies": {
-		"leaflet-plugins": "~1.8.0"
+		"Leaflet.GridLayer.GoogleMutant": "*"
 	}
 }
