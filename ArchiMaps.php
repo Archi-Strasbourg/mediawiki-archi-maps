@@ -12,6 +12,12 @@ class ArchiMaps
             $out->addScriptFile(
                 $wgScriptPath.'/extensions/ArchiMaps/bower_components/Leaflet.GridLayer.GoogleMutant/Leaflet.GoogleMutant.js'
             );
+            $out->addScriptFile(
+                $wgScriptPath.'/extensions/ArchiMaps/bower_components/leaflet-control-geocoder/dist/Control.Geocoder.js'
+            );
+            $out->addStyle(
+                $wgScriptPath.'/extensions/ArchiMaps/bower_components/leaflet-control-geocoder/dist/Control.Geocoder.css'
+            );
             $out->addScriptFile($wgScriptPath.'/extensions/ArchiMaps/js/map.js');
         }
     }

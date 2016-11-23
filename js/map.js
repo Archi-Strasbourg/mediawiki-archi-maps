@@ -20,10 +20,11 @@ var archimap = (function () {
             };
             map.addLayer(layers.OpenStreetMap);
             map.addControl(new L.Control.Layers(layers, {}));
+            map.addControl(new L.Control.geocoder());
         },
         pollForMap (time) {
             if ($('#map_leaflet_1').length > 0) {
-                if (maps && maps.leafletList[0]) {
+                if (maps && maps.leafletList[0] && maps.leafletList[0].map) {
                     archimap.init();
                 } else {
                     if (!time) {
