@@ -1,10 +1,19 @@
 <?php
-
+/**
+ * ArchiMaps class
+ */
 namespace ArchiMaps;
 
+/**
+ * Add missing features to Leaflet maps
+ */
 class ArchiMaps
 {
-    public static function addScripts(\OutputPage &$out, \Skin &$skin)
+    /**
+     * Add scripts to <head>
+     * @param \OutputPage $out  HTML output
+     */
+    public static function addScripts(\OutputPage &$out)
     {
         global $wgScriptPath, $egMapsGMaps3ApiKey;
         if (in_array('ext.maps.leaflet', $out->getModules())) {
