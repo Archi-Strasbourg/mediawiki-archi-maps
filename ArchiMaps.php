@@ -1,17 +1,19 @@
 <?php
 /**
- * ArchiMaps class
+ * ArchiMaps class.
  */
+
 namespace ArchiMaps;
 
 /**
- * Add missing features to Leaflet maps
+ * Add missing features to Leaflet maps.
  */
 class ArchiMaps
 {
     /**
-     * Add scripts to <head>
-     * @param \OutputPage $out  HTML output
+     * Add scripts to <head>.
+     *
+     * @param \OutputPage $out HTML output
      */
     public static function addScripts(\OutputPage &$out)
     {
