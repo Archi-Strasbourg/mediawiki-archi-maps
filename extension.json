@@ -1,14 +1,14 @@
 {
-	"manifest_version": 1,
-	"name": "ArchiMaps",
-	"author": "Pierre Rudloff",
-	"license-name": "GPL-3.0",
-	"Hooks": {
-		"BeforePageDisplay": [
-			"ArchiMaps\\ArchiMaps::addScripts"
-		]
-	},
-	"AutoloadClasses": {
-		"ArchiMaps\\ArchiMaps": "ArchiMaps.php"
-	}
+  "manifest_version": 1,
+  "name": "ArchiMaps",
+  "author": "Pierre Rudloff",
+  "license-name": "GPL-3.0",
+  "Hooks": {
+    "BeforePageDisplay": [
+      "ArchiMaps\\ArchiMaps::addScripts"
+    ]
+  },
+  "AutoloadClasses": {
+    "ArchiMaps\\ArchiMaps": "ArchiMaps.php"
+  }
 }
