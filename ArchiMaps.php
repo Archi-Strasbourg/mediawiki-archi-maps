@@ -43,15 +43,15 @@ class ArchiMaps
             $selectedLayer = 'OpenStreetMap';
         }
         $preferences['map-layer'] = [
-            'type' => 'radio',
+            'type'          => 'radio',
             'label-message' => 'map-layer',
-            'section' => 'rendering/advancedrendering',
-            'options' => [
-                'OpenStreetMap'=>'OpenStreetMap',
-                'Google Maps (satelitte)'=>'Google Maps (satelitte)',
-                'Google Maps (plan)'=>'Google Maps (plan)',
+            'section'       => 'rendering/advancedrendering',
+            'options'       => [
+                'OpenStreetMap'          => 'OpenStreetMap',
+                'Google Maps (satelitte)'=> 'Google Maps (satelitte)',
+                'Google Maps (plan)'     => 'Google Maps (plan)',
             ],
-            'default' => $selectedLayer
+            'default' => $selectedLayer,
         ];
 
         return true;
