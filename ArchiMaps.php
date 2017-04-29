@@ -32,4 +32,25 @@ class ArchiMaps
             $out->addScriptFile($wgScriptPath.'/extensions/ArchiMaps/js/map.js');
         }
     }
+
+    public static function addPreferences(\User $user, array &$preferences)
+    {
+        $selectedLayer = $user->getOption('map-layer');
+        if (!isset($selectedLayer)) {
+            $selectedLayer = 'OpenStreetMap';
+        }
+        $preferences['map-layer'] = [
+            'type' => 'radio',
+            'label-message' => 'map-layer',
+            'section' => 'rendering/advancedrendering',
+            'options' => [
+                'OpenStreetMap'=>'OpenStreetMap',
+                'Google Maps (satelitte)'=>'Google Maps (satelitte)',
+                'Google Maps (plan)'=>'Google Maps (plan)',
+            ],
+            'default' => $selectedLayer
+        ];
+
+        return true;
+    }
 }

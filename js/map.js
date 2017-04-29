@@ -21,6 +21,10 @@ var archimap = (function () {
             map.addLayer(layers.OpenStreetMap);
             map.addControl(new L.Control.Layers(layers, {}));
             map.addControl(new L.Control.geocoder());
+            var defaultLayer = mw.user.options.get('map-layer');
+            if (defaultLayer) {
+                layers[defaultLayer].addTo(map);
+            }
         },
         pollForMap (time) {
             if ($('#map_leaflet_1').length > 0) {

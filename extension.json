@@ -6,9 +6,17 @@
   "Hooks": {
     "BeforePageDisplay": [
       "ArchiMaps\\ArchiMaps::addScripts"
+    ],
+    "GetPreferences": [
+      "ArchiMaps\\ArchiMaps::addPreferences"
     ]
   },
   "AutoloadClasses": {
     "ArchiMaps\\ArchiMaps": "ArchiMaps.php"
+  },
+  "MessagesDirs": {
+    "ArchiMaps": [
+      "i18n"
+    ]
   }
 }
