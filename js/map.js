@@ -23,6 +23,7 @@ var archimap = (function () {
         map.addControl(L.Control.geocoder());
         var defaultLayer = mw.user.options.get("map-layer");
         if (defaultLayer) {
+            map.removeLayer(layers.OpenStreetMap);
             layers[defaultLayer].addTo(map);
         }
     }
