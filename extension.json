@@ -21,5 +21,24 @@
     "ArchiMaps": [
       "i18n"
     ]
+  },
+  "ResourceModules": {
+    "ext.archimaps": {
+      "scripts": [
+        "bower_components/Leaflet.GridLayer.GoogleMutant/Leaflet.GoogleMutant.js",
+        "bower_components/leaflet-control-geocoder/dist/Control.Geocoder.js",
+        "js/map.js"
+      ],
+      "styles": [
+        "bower_components/leaflet-control-geocoder/dist/Control.Geocoder.css"
+      ],
+      "dependencies": [
+        "ext.maps.leaflet"
+      ]
+    }
+  },
+  "ResourceFileModulePaths": {
+    "localBasePath": "",
+    "remoteExtPath": "ArchiMaps"
   }
 }
