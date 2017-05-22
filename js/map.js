@@ -47,4 +47,9 @@ var archimap = (function () {
         pollForMap: pollForMap
     };
 }());
-window.addEventListener("load", archimap.pollForMap, false);
+
+if (typeof window === "object") {
+    window.addEventListener("load", archimap.pollForMap, false);
+} else {
+    throw "Not in a browser";
+}
