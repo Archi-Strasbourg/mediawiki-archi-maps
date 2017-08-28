@@ -18,8 +18,11 @@ class ArchiMaps
     public static function addScripts(\OutputPage &$out)
     {
         global $egArchiMapsGMapsKey;
-        $out->addScriptFile('https://maps.google.com/maps/api/js?v=3&key='.$egArchiMapsGMapsKey);
-        $out->addModules('ext.archimaps');
+        // Only load the scripts if the Leaflet module is available on this page
+        if (in_array('ext.maps.leaflet', $out->getModules())) {
+            $out->addScriptFile('https://maps.google.com/maps/api/js?v=3&key='.$egArchiMapsGMapsKey);
+            $out->addModules('ext.archimaps');
+        }
     }
 
     public static function addPreferences(\User $user, array &$preferences)
