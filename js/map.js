@@ -1,24 +1,55 @@
+/*jslint browser: true, for: true*/
+/*global L, window, mw, maps, $*/
 var archimap = (function () {
-	return {
-        init: function() {
-            var div = document.getElementById('archimap'),
-                map = L.map(div).setView([48.573392, 7.752353], 13),
-                geo = GeocoderJS.createGeocoder('openstreetmap'),
-                layers = {
-                    'OpenStreetMap': L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-                        attribution: '&copy; Contributeurs d\'<a href="http://osm.org/copyright">OpenStreetMap</a>'
-                    }),
-                    'Google Maps (satelitte)': new L.Google('SATELLITE'),
-                    'Google Maps (plan)': new L.Google('ROADMAP')
-                };
-            map.addLayer(layers.OpenStreetMap);
-            map.addControl(new L.Control.Layers(layers, {}));
-            geo.geocode(div.dataset.address + ', ' + div.dataset.city + ', ' + div.dataset.country, function(result) {
-                var coords = [result[0].latitude, result[0].longitude];
-                L.marker(coords).addTo(map);
-                map.setView(coords, 15);
-            });
+    "use strict";
+
+    function init() {
+        var map = maps.leafletList[0].map;
+        var OSMlayer;
+        map.eachLayer(
+            function (layer) {
+                if (layer._url) {
+                    OSMlayer = layer;
+                }
+            }
+        );
+        var layers = {
+            "OpenStreetMap": OSMlayer,
+            "Google Maps (satelitte)": L.gridLayer.googleMutant({type: "satellite"}),
+            "Google Maps (plan)": L.gridLayer.googleMutant({type: "roadmap"})
+        };
+        map.addLayer(layers.OpenStreetMap);
+        map.addControl(new L.Control.Layers(layers, {}));
+        map.addControl(L.Control.geocoder());
+        var defaultLayer = mw.user.options.get("map-layer");
+        if (defaultLayer) {
+            map.removeLayer(layers.OpenStreetMap);
+            layers[defaultLayer].addTo(map);
         }
+    }
+
+    function pollForMap(time) {
+        if ($("#map_leaflet_1").length > 0) {
+            if (maps && maps.leafletList[0] && maps.leafletList[0].map) {
+                init();
+            } else {
+                if (!time) {
+                    time = 50;
+                }
+                setTimeout(function () {
+                    pollForMap(time * 2);
+                }, time);
+            }
+        }
+    }
+
+    return {
+        pollForMap: pollForMap
     };
 }());
-window.addEventListener('load', archimap.init, false);
+
+if (typeof window === "object") {
+    window.addEventListener("load", archimap.pollForMap, false);
+} else {
+    throw "Not in a browser";
+}

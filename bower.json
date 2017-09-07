@@ -1,8 +1,7 @@
 {
-	"name": "ArchiMaps",
-	"dependencies": {
-		"leaflet": "~0.7.7",
-		"leaflet-plugins": "~1.6.1",
-		"geocoder-js": "~0.0.1"
-	}
+  "name": "archimaps",
+  "dependencies": {
+    "Leaflet.GridLayer.GoogleMutant": "*",
+    "leaflet-control-geocoder": "1.5.3"
+  }
 }

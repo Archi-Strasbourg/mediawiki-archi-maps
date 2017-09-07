@@ -1,13 +1,44 @@
 {
-	"name": "ArchiMaps",
-	"author": "Pierre Rudloff",
-	"license-name": "GPL-3.0",
-	"Hooks": {
-		"BeforePageDisplay": [
-			"ArchiMaps\\ArchiMaps::addScripts"
-		]
-	},
-	"AutoloadClasses": {
-		"ArchiMaps\\ArchiMaps": "ArchiMaps.php"
-	}
+  "manifest_version": 1,
+  "name": "ArchiMaps",
+  "author": "Pierre Rudloff",
+  "license-name": "GPL-3.0",
+  "version": "1.0.0",
+  "description": "Map plugin for archi-wiki.org",
+  "url": "https://github.com/Archi-Strasbourg/mediawiki-archi-maps",
+  "Hooks": {
+    "BeforePageDisplay": [
+      "ArchiMaps\\ArchiMaps::addScripts"
+    ],
+    "GetPreferences": [
+      "ArchiMaps\\ArchiMaps::addPreferences"
+    ]
+  },
+  "AutoloadClasses": {
+    "ArchiMaps\\ArchiMaps": "ArchiMaps.php"
+  },
+  "MessagesDirs": {
+    "ArchiMaps": [
+      "i18n"
+    ]
+  },
+  "ResourceModules": {
+    "ext.archimaps": {
+      "scripts": [
+        "bower_components/Leaflet.GridLayer.GoogleMutant/Leaflet.GoogleMutant.js",
+        "bower_components/leaflet-control-geocoder/dist/Control.Geocoder.js",
+        "js/map.js"
+      ],
+      "styles": [
+        "bower_components/leaflet-control-geocoder/dist/Control.Geocoder.css"
+      ],
+      "dependencies": [
+        "ext.maps.leaflet"
+      ]
+    }
+  },
+  "ResourceFileModulePaths": {
+    "localBasePath": "",
+    "remoteExtPath": "ArchiMaps"
+  }
 }

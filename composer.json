@@ -1,10 +1,19 @@
 {
-	"name": "archi-strasbourg/archi-maps",
-	"description": "Map plugin for archi-wiki.org",
-	"license": "GPL-3.0",
-	"authors": [{
-		"name": "Pierre Rudloff",
-		"email": "contact@rudloff.pro"
-	}],
-	"type": "mediawiki-extension"
+  "name": "archi-strasbourg/archi-maps",
+  "description": "Map plugin for archi-wiki.org",
+  "license": "GPL-3.0",
+  "authors": [
+    {
+      "name": "Pierre Rudloff",
+      "email": "contact@rudloff.pro"
+    }
+  ],
+  "type": "mediawiki-extension",
+  "require-dev": {
+    "phpdocumentor/phpdocumentor": "~2.9.0",
+    "squizlabs/php_codesniffer": "~2.8.0"
+  },
+  "scripts": {
+    "doc": "./vendor/bin/phpdoc -f ArchiMaps.php -t docs"
+  }
 }

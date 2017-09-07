@@ -1,20 +1,48 @@
 <?php
+/**
+ * ArchiMaps class.
+ */
 
 namespace ArchiMaps;
 
+/**
+ * Add missing features to Leaflet maps.
+ */
 class ArchiMaps
 {
-    public static function addScripts(\OutputPage &$out, \Skin &$skin)
+    /**
+     * Add scripts to <head>.
+     *
+     * @param \OutputPage $out HTML output
+     */
+    public static function addScripts(\OutputPage &$out)
     {
-        global $wgScriptPath;
-        $out->addStyle($wgScriptPath.'/extensions/ArchiMaps/bower_components/leaflet/dist/leaflet.css');
-        $out->addStyle($wgScriptPath.'/extensions/ArchiMaps/css/map.css');
-        $out->addScriptFile($wgScriptPath.'/extensions/ArchiMaps/bower_components/leaflet/dist/leaflet.js');
-        $out->addScriptFile('https://maps.google.com/maps/api/js?v=3');
-        $out->addScriptFile(
-            $wgScriptPath.'/extensions/ArchiMaps/bower_components/leaflet-plugins/layer/tile/Google.js'
-        );
-        $out->addScriptFile($wgScriptPath.'/extensions/ArchiMaps/bower_components/geocoder-js/dist/geocoder.js');
-        $out->addScriptFile($wgScriptPath.'/extensions/ArchiMaps/js/map.js');
+        global $egArchiMapsGMapsKey;
+        // Only load the scripts if the Leaflet module is available on this page
+        if (in_array('ext.maps.leaflet', $out->getModules())) {
+            $out->addScriptFile('https://maps.google.com/maps/api/js?v=3&key='.$egArchiMapsGMapsKey);
+            $out->addModules('ext.archimaps');
+        }
+    }
+
+    public static function addPreferences(\User $user, array &$preferences)
+    {
+        $selectedLayer = $user->getOption('map-layer');
+        if (!isset($selectedLayer)) {
+            $selectedLayer = 'OpenStreetMap';
+        }
+        $preferences['map-layer'] = [
+            'type'          => 'radio',
+            'label-message' => 'map-layer',
+            'section'       => 'rendering/advancedrendering',
+            'options'       => [
+                'OpenStreetMap'          => 'OpenStreetMap',
+                'Google Maps (satelitte)'=> 'Google Maps (satelitte)',
+                'Google Maps (plan)'     => 'Google Maps (plan)',
+            ],
+            'default' => $selectedLayer,
+        ];
+
+        return true;
     }
 }
