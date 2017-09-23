@@ -28,7 +28,7 @@ var archimap = (function () {
         }
     }
 
-    function pollForMap(time) {
+    function pollForMap(e, time) {
         if ($("#map_leaflet_1").length > 0) {
             if (maps && maps.leafletList[0] && maps.leafletList[0].map) {
                 init();
@@ -37,7 +37,7 @@ var archimap = (function () {
                     time = 50;
                 }
                 setTimeout(function () {
-                    pollForMap(time * 2);
+                    pollForMap(e, time * 2);
                 }, time);
             }
         }
@@ -48,8 +48,8 @@ var archimap = (function () {
     };
 }());
 
-if (typeof window === "object") {
-    window.addEventListener("load", archimap.pollForMap, false);
+if (typeof $ === "function") {
+    $(document).ready(archimap.pollForMap);
 } else {
-    throw "Not in a browser";
+    throw "jQuery is not loaded";
 }
