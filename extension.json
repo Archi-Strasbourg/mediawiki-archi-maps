@@ -3,7 +3,7 @@
   "name": "ArchiMaps",
   "author": "Pierre Rudloff",
   "license-name": "GPL-3.0",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Map plugin for archi-wiki.org",
   "url": "https://github.com/Archi-Strasbourg/mediawiki-archi-maps",
   "Hooks": {
