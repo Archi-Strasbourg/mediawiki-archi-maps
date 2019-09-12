@@ -21,6 +21,8 @@ var archimap = (function () {
         map.addLayer(layers.OpenStreetMap);
         map.addControl(new L.Control.Layers(layers, {}));
         map.addControl(L.Control.geocoder());
+        map.addControl(L.control.locate());
+
         var defaultLayer = mw.user.options.get("map-layer");
         if (defaultLayer) {
             map.removeLayer(layers.OpenStreetMap);

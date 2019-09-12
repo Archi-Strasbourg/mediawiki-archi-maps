@@ -27,10 +27,13 @@
       "scripts": [
         "bower_components/Leaflet.GridLayer.GoogleMutant/Leaflet.GoogleMutant.js",
         "bower_components/leaflet-control-geocoder/dist/Control.Geocoder.js",
+        "bower_components/leaflet.locatecontrol/dist/L.Control.Locate.min.js",
         "js/map.js"
       ],
       "styles": [
-        "bower_components/leaflet-control-geocoder/dist/Control.Geocoder.css"
+        "bower_components/leaflet-control-geocoder/dist/Control.Geocoder.css",
+        "bower_components/leaflet.locatecontrol/dist/L.Control.Locate.min.css",
+        "bower_components/font-awesome/css/font-awesome.min.css"
       ],
       "dependencies": [
         "ext.maps.leaflet"
