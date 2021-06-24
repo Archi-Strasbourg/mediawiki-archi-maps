@@ -19,7 +19,7 @@ class ArchiMaps
     {
         global $egArchiMapsGMapsKey;
         // Only load the scripts if the Leaflet module is available on this page
-        if (in_array('ext.maps.leaflet', $out->getModules())) {
+        if (in_array('ext.maps.leaflet.loader', $out->getModules())) {
             $out->addScriptFile('https://maps.google.com/maps/api/js?v=3&key='.$egArchiMapsGMapsKey);
             $out->addModules('ext.archimaps');
         }

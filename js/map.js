@@ -4,17 +4,9 @@ var archimap = (function () {
     "use strict";
 
     function init() {
-        var map = maps.leafletList[0].map;
-        var OSMlayer;
-        map.eachLayer(
-            function (layer) {
-                if (layer._url) {
-                    OSMlayer = layer;
-                }
-            }
-        );
-        var layers = {
-            "OpenStreetMap": OSMlayer,
+        const map = window.mapsLeafletList[0].map;
+        const layers = {
+            "OpenStreetMap": new L.tileLayer.provider('OpenStreetMap'),
             "Google Maps (satelitte)": L.gridLayer.googleMutant({type: "satellite"}),
             "Google Maps (plan)": L.gridLayer.googleMutant({type: "roadmap"})
         };
@@ -23,35 +15,20 @@ var archimap = (function () {
         map.addControl(L.Control.geocoder());
         map.addControl(L.control.locate());
 
-        var defaultLayer = mw.user.options.get("map-layer");
+        const defaultLayer = mw.user.options.get("map-layer");
         if (defaultLayer) {
             map.removeLayer(layers.OpenStreetMap);
             layers[defaultLayer].addTo(map);
         }
     }
 
-    function pollForMap(e, time) {
-        if ($("#map_leaflet_1").length > 0) {
-            if (maps && maps.leafletList[0] && maps.leafletList[0].map) {
-                init();
-            } else {
-                if (!time) {
-                    time = 50;
-                }
-                setTimeout(function () {
-                    pollForMap(e, time * 2);
-                }, time);
-            }
-        }
-    }
-
     return {
-        pollForMap: pollForMap
+        init: init
     };
 }());
 
 if (typeof $ === "function") {
-    $(document).ready(archimap.pollForMap);
+    $(document).ready(archimap.init);
 } else {
     throw "jQuery is not loaded";
 }
