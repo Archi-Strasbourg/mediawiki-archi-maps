@@ -5,6 +5,8 @@
 
 namespace ArchiMaps;
 
+use OutputPage;
+
 /**
  * Add missing features to Leaflet maps.
  */
@@ -13,14 +15,16 @@ class ArchiMaps
     /**
      * Add scripts to <head>.
      *
-     * @param \OutputPage $out HTML output
+     * @param OutputPage $out HTML output
      */
-    public static function addScripts(\OutputPage &$out)
+    public static function addScripts(OutputPage &$out)
     {
         global $egArchiMapsGMapsKey;
         // Only load the scripts if the Leaflet module is available on this page
-        if (in_array('ext.maps.leaflet.loader', $out->getModules())) {
-            $out->addScriptFile('https://maps.google.com/maps/api/js?v=3&key='.$egArchiMapsGMapsKey);
+        if (in_array('ext.maps.leaflet.loader', $out->getModules())
+            || $out->getTitle()->getFullText() == 'Spécial:RunQuery/Recherche avancée'
+        ) {
+            $out->addScriptFile('https://maps.google.com/maps/api/js?v=3&key=' . $egArchiMapsGMapsKey);
             $out->addModules('ext.archimaps');
         }
     }

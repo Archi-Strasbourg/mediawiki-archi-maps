@@ -3,6 +3,46 @@
 var archimap = (function () {
     "use strict";
 
+    const api = new mw.Api();
+
+    /**
+     * @param {object} e
+     */
+    function customizePopup(e) {
+        if (!e.popup.hasImage) {
+            const title = jQuery(e.popup.getContent()).find('a').attr('title');
+            if (typeof title != 'undefined') {
+                api.get({
+                    action: 'ask',
+                    query: '[[' + title + ']]|?Image principale'
+                    // Obligé de faire des fonctions anonymes pour garder la référence au popup.
+                }).done(
+                    /**
+                     * @param {object} data
+                     */
+                    function (data) {
+                        const results = Object.values(data.query.results);
+                        const filename = results[0].printouts['Image principale'][0].fulltext;
+
+                        api.get({
+                            action: 'parse',
+                            contentmodel: 'wikitext',
+                            text: '[[' + filename + '|center|200px]]'
+                        }).done(
+                            /**
+                             * @param {object} result
+                             */
+                            function addImage(result) {
+                                e.popup.setContent(e.popup.getContent() + result.parse.text['*']);
+                                e.popup.hasImage = true;
+                            }
+                        );
+                    }
+                );
+            }
+        }
+    }
+
     function init() {
         const map = window.mapsLeafletList[0].map;
         const layers = {
@@ -20,6 +60,8 @@ var archimap = (function () {
             map.removeLayer(layers.OpenStreetMap);
             layers[defaultLayer].addTo(map);
         }
+
+        map.on('popupopen', customizePopup);
     }
 
     return {
