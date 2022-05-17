@@ -14,7 +14,7 @@ var archimap = (function () {
             if (typeof title != 'undefined') {
                 api.get({
                     action: 'ask',
-                    query: '[[' + title + ']]|?Image principale'
+                    query: '[[' + title + ']]|?Image principale|?Date de construction|?Personne'
                     // Obligé de faire des fonctions anonymes pour garder la référence au popup.
                 }).done(
                     /**
@@ -24,10 +24,37 @@ var archimap = (function () {
                         const results = Object.values(data.query.results);
                         const filename = results[0].printouts['Image principale'][0].fulltext;
 
+                        let text = '';
+
+                        const dates = [];
+                        results[0].printouts['Date de construction'].forEach(
+                            function (date) {
+                                dates.push(date.fulltext);
+                            }
+                        );
+                        if (dates.length > 0) {
+                            text += 'Date de construction&nbsp;: ' + dates.join(', ') + '<br/>';
+                        }
+
+                        const names = [];
+                        results[0].printouts['Personne'].forEach(
+                            function (person) {
+                                // noinspection JSNonASCIINames
+                                if (person['Métier'].item[0] === 'Architecte') {
+                                    names.push(person['Nom'].item[0].fulltext.replace('Personne:', ''));
+                                }
+                            }
+                        );
+                        if (names.length > 0) {
+                            text += 'Architecte&nbsp;: ' + names.join(', ') + '<br/>';
+                        }
+
+                        text += '[[' + filename + '|center|200px]]';
+
                         api.get({
                             action: 'parse',
                             contentmodel: 'wikitext',
-                            text: '[[' + filename + '|center|200px]]'
+                            text: text
                         }).done(
                             /**
                              * @param {object} result
