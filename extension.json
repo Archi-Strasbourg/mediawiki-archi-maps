@@ -37,6 +37,10 @@
       ],
       "dependencies": [
         "ext.maps.leaflet.loader"
+      ],
+      "targets": [
+        "desktop",
+        "mobile"
       ]
     }
   },
