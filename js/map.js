@@ -94,24 +94,26 @@ const archimap = (function () {
     }
 
     function init() {
-        const map = window.mapsLeafletList[0].map;
-        const layers = {
-            "OpenStreetMap": new L.tileLayer.provider('OpenStreetMap'),
-            "Google Maps (satelitte)": L.gridLayer.googleMutant({type: "satellite"}),
-            "Google Maps (plan)": L.gridLayer.googleMutant({type: "roadmap"})
-        };
-        map.addLayer(layers.OpenStreetMap);
-        map.addControl(new L.Control.Layers(layers, {}));
-        map.addControl(L.Control.geocoder());
-        map.addControl(L.control.locate());
+        if (window.mapsLeafletList.length > 0) {
+            const map = window.mapsLeafletList[0].map;
+            const layers = {
+                "OpenStreetMap": new L.tileLayer.provider('OpenStreetMap'),
+                "Google Maps (satelitte)": L.gridLayer.googleMutant({type: "satellite"}),
+                "Google Maps (plan)": L.gridLayer.googleMutant({type: "roadmap"})
+            };
+            map.addLayer(layers.OpenStreetMap);
+            map.addControl(new L.Control.Layers(layers, {}));
+            map.addControl(L.Control.geocoder());
+            map.addControl(L.control.locate());
 
-        const defaultLayer = mw.user.options.get("map-layer");
-        if (defaultLayer) {
-            map.removeLayer(layers.OpenStreetMap);
-            layers[defaultLayer].addTo(map);
+            const defaultLayer = mw.user.options.get("map-layer");
+            if (defaultLayer) {
+                map.removeLayer(layers.OpenStreetMap);
+                layers[defaultLayer].addTo(map);
+            }
+
+            map.on('popupopen', customizePopup);
         }
-
-        map.on('popupopen', customizePopup);
     }
 
     return {
