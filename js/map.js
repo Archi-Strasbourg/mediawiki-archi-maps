@@ -85,7 +85,7 @@ const archimap = (function () {
             On ne met pas directement le lien dans le JSON généré par Maps
             parce que ça alourdit pas mal le JSON.
              */
-            const title = jQuery(e.popup.getContent()).text();
+            const title = jQuery(e.popup.getContent()).text().replace('Adresse:', '');
 
             if (typeof title != 'undefined') {
                 api.parse("'''[[" + 'Adresse:' + title + "]]'''").done(insertLink.bind(null, e.popup, title));
