@@ -45,7 +45,8 @@ const archimap = (function () {
         let text = '';
 
         const dates = [];
-        results[0].printouts['Date de construction'].forEach(addDate.bind(null, dates));
+        // noinspection JSNonASCIINames
+        results[0].printouts['Date de construction affichée'].forEach(addDate.bind(null, dates));
         if (dates.length > 0) {
             text += 'Date de construction&nbsp;: ' + dates.join(', ') + '<br/>';
         }
@@ -72,7 +73,7 @@ const archimap = (function () {
 
         api.get({
             action: 'ask',
-            query: '[[' + 'Adresse:' + title + ']]|?Image principale|?Date de construction|?Personne'
+            query: '[[' + 'Adresse:' + title + ']]|?Image principale|?Date de construction affichée|?Personne'
         }).done(handleAddressInfo.bind(null, popup));
     }
 
