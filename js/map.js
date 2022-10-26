@@ -29,7 +29,7 @@ const archimap = (function () {
      */
     function addPerson(names, person) {
         // noinspection JSNonASCIINames
-        if (person['Métier'].item[0] === 'Architecte') {
+        if (['Architecte', "Agence d'architecture"].includes(person['Métier'].item[0])) {
             names.push(person['Nom'].item[0].fulltext.replace('Personne:', ''));
         }
     }
