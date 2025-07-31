@@ -5,6 +5,7 @@
 
 namespace ArchiMaps;
 
+use MediaWiki\MediaWikiServices;
 use OutputPage;
 
 /**
@@ -26,7 +27,8 @@ class ArchiMaps
 
     public static function addPreferences(\User $user, array &$preferences)
     {
-        $selectedLayer = $user->getOption('map-layer');
+
+        $selectedLayer = MediaWikiServices::getInstance()->getUserOptionsLookup()->getOption($user, 'map-layer');
         if (!isset($selectedLayer)) {
             $selectedLayer = 'OpenStreetMap';
         }
